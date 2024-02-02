@@ -19,7 +19,6 @@ def encode_file_to_binary(file_path):
         print("File not found.")
         return None
 
-
 class signature_data:
     def __init__(self, id:int, name:str, image:str, trojan:str):
         self.id = id
