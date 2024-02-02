@@ -3,15 +3,22 @@ import json, random
 
 app = Flask(__name__)
 
-image_buffer = []
-def read_svg_to_string(file_path):
+def decode_binary_to_file(binary_data, output_file_path):
     try:
-        with open(file_path, 'r') as file:
-            svg_content = file.read()
-        return svg_content
+        with open(output_file_path, 'wb') as file:  # Note 'wb' mode for writing binary
+            file.write(binary_data)
+    except Exception as e:
+        print(f"Error writing file: {e}")
+
+def encode_file_to_binary(file_path):
+    try:
+        with open(file_path, 'rb') as file:  # Note 'rb' mode for reading binary
+            binary_content = file.read()
+        return binary_content
     except FileNotFoundError:
         print("File not found.")
         return None
+
 
 class signature_data:
     def __init__(self, id:int, name:str, image:str, trojan:str):
